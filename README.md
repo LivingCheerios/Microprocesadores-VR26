@@ -1,4 +1,4 @@
-# Microprocesadores-VR26
+# Microprocesadores-VR26 (Equipo Artemisa)
 
 Repositorio dedicado al curso de Microprocesadores
 
