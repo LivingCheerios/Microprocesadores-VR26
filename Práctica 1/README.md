@@ -13,8 +13,9 @@ Esta práctica consistió en 3 ejercicios:
   
 -
 ## Descripción
+### Configuración básica de FUSEs
 ### Ejercicio 1
--
+
 Para poder realizar el ejercicio 1
 
 ## Archivos
