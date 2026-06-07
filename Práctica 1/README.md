@@ -12,8 +12,8 @@ Esta práctica consistió en 3 ejercicios:
 * Resistencias de 220Ω
   
 -
-# Descripción
-## Ejercicio 1
+## Descripción
+### Ejercicio 1
 -
 Para poder realizar el ejercicio 1
 
