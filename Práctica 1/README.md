@@ -105,4 +105,4 @@ Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
 Para esta práctica se cuentan con los siguentes archivos para todos los ejercicios:
 * [Archivo del código en C](./Archivos%20C)
 * [Archivo .hex generado por MPLAB](./Archivos%20.hex)
-* [Archivo de la simulación de Proteus](./Archivos%20C) 
+* [Archivo de la simulación de Proteus](./SimuPractica1.pdsprj) 
