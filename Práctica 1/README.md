@@ -22,7 +22,7 @@ Como Header en todas las prácticas, se tiene las configuraciones de los FUSEs. 
 Para poder realizar el ejercicio 1
 
 ## Simulación e Implementación
-![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-07%20142442.png)
+<img src="./assets/Captura%20de%20pantalla%202026-06-07%20142442.png" alt="Simulación en Proteus" width="20%">
 ![Implementación física en Protoboard](./assets/Proto%20Practica1.jpeg)
 
 ## Archivos
