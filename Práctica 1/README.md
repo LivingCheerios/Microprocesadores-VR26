@@ -23,7 +23,6 @@ Para poder realizar el ejercicio 1
 
 ## Simulación e Implementación
 ![Simulación en Proteus](./assets/microprocessor-diagram.png)
-Práctica 1/assets/Proto Practica1.jpeg
 ![Implementación física en Protoboard](./assets/Proto%20Practica1.jpeg)
 
 ## Archivos
