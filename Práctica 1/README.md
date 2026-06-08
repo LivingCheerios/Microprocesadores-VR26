@@ -37,6 +37,32 @@ Para poder realizar el ejercicio 1 se utilizó la siguiente lógica:
 
 </div>
 
+### Ejercicio 2: Contador Binario de 6 bits
+
+<div align="justify">
+
+Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
+
+* Se declara la variable contador de tipo unsigned char y se inicializa en cero (unsigned char contador = 0;). Esta variable es la que llevará el registro numérico de nuestra cuenta.
+
+* Se inicializa el puerto D completo como salida declarando TRISD = 0x00; (que es el equivalente hexadecimal de 0b00000000).
+
+* Se entra en el bucle infinito while(1).
+
+* Dentro del bucle, se manda el valor de la cuenta a los pines físicos usando PORTD = contador & 0x3F;. El valor hexadecimal 0x3F convertido a binario es 0b00111111. Al utilizar el operador lógico AND (&), se crea una "máscara" que deja pasar el valor del contador hacia los primeros 6 pines (RD0 al RD5), pero obliga a los pines sobrantes (RD6 y RD7) a mantenerse siempre en LOW.
+
+* Se genera un retardo con __delay_ms(500);. El microcontrolador espera 500 milisegundos para que podamos percibir visualmente la combinación de LEDs encendidos.
+
+* Se incrementa el valor actual de la variable en uno mediante la instrucción contador++;.
+
+* Se evalúa una condición límite usando if(contador > 63). Como estamos haciendo un contador de 6 bits, el valor máximo que podemos representar es el 63 en decimal (es decir, todos los 6 LEDs en HIGH: 0b00111111).
+
+* Si la variable supera el número 63 (al llegar a 64), se ejecuta la instrucción interna contador = 0; para reiniciar la cuenta.
+
+* Con esto, el ciclo vuelve a iniciar, logrando así un sistema que realiza una secuencia de conteo binario ascendente del 0 al 63 de forma ininterrumpida.
+  
+</div>
+
 ## Simulación e Implementación
 
 ![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-07%20142442.png) 
