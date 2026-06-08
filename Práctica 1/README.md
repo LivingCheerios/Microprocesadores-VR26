@@ -44,3 +44,7 @@ Para poder realizar el ejercicio 1 se utilizó la siguiente lógica:
 ![Implementación física en Protoboard](./assets/Proto%20Practica1.jpeg)
 
 ## Archivos
+Para esta práctica se cuentan con los siguentes archivos para todos los ejercicios:
+* ![Archivo del código en C](./Archivos%20C)
+* ![Archivo .hex generado por MPLAB](./Archivos%20.hex)
+* ![Archivo de la simulación de Proteus](./Archivos%20C) 
