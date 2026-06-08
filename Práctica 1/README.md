@@ -22,9 +22,13 @@ Como Header en todas las prácticas, se tiene las configuraciones de los FUSEs. 
 
 </div>
 
-### Ejercicio 1
+### Ejercicio 1: Blinker
+
+<div align="justify">
 
 Para poder realizar el ejercicio 1
+
+</div>
 
 ## Simulación e Implementación
 
