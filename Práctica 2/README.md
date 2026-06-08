@@ -42,6 +42,7 @@ Lógica del efecto Barrido
 ![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-07%20195642.png) 
 
 ![Implementación física en Protoboard](./assets/Proto%20Practica2.jpeg)
+
 ![Implementación física en Protoboard](./assets/Video%20Practica2.gif)
 
 ## Archivos
