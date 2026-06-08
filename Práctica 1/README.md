@@ -11,8 +11,8 @@ Esta práctica consistió en 3 ejercicios:
 * Leds azules
 * Resistencias de 220Ω
 * Cristal oscilador de 8Mhz
-  
--
+
+
 ## Descripción
 ### Configuración básica del sistema (FUSES y oscilador)
 
@@ -26,7 +26,11 @@ Como Header en todas las prácticas, se tiene las configuraciones de los FUSEs. 
 
 <div align="justify">
 
-Para poder realizar el ejercicio 1
+Para poder realizar el ejercicio 1 se utilizó la siguiente lógica:
+* Se inicializa el puerto D como salida (TRISD = 0b00000000;)
+* Se inicializan todos los pines del puerto en bajo (PORTD = 0b00000000;)
+* Se entra en el bucle while
+** Dentro
 
 </div>
 
