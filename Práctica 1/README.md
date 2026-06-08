@@ -21,4 +21,9 @@ Como Header en todas las prácticas, se tiene las configuraciones de los FUSEs. 
 
 Para poder realizar el ejercicio 1
 
+## Simulación e Implementación
+![Simulación en Proteus](./assets/microprocessor-diagram.png)
+
+![Implementación física en Protoboard](./assets/microprocessor-diagram.png)
+
 ## Archivos
