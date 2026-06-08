@@ -8,8 +8,8 @@ Esta práctica consistió en 3 ejercicios:
 ## Materiales utilizados
 * PIC16f887
 * Push button
-* Leds azules
-* Resistencias de 220Ω
+* Leds azules (x8)
+* Resistencias de 220Ω (x8)
 * Cristal oscilador de 8Mhz
 
 
