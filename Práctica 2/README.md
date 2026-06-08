@@ -43,7 +43,7 @@ Lógica del efecto Barrido
 
 ![Implementación física en Protoboard](./assets/Proto%20Practica2.jpeg)
 
-![Implementación física en Protoboard](./assets/Video%20Practica2.gif)
+![Implementación física en Protoboard](./assets/Practica2.gif)
 
 ## Archivos
 Para esta práctica se cuentan con los siguentes archivos para todos los ejercicios:
