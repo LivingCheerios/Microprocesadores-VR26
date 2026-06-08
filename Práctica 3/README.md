@@ -58,9 +58,9 @@ Para poder realizar el ejercicio 2 se utilizó una lógica similar:
 
 * Dentro del bucle, se manda la información a los pines físicos mediante la instrucción PORTD = hex[i];. Si i vale 0, el microcontrolador va a la lista, toma el valor 0x3F y lo manda al puerto, encendiendo el número 0 en el display físico.
 
-* Se genera un retardo con __delay_ms(500); para que el dígito se mantenga encendido y visible durante medio segundo.
+* Se genera un retardo con __delay_ms(1000); para que el dígito se mantenga encendido y visible durante un segundo.
 
-* Se incrementa el valor de la variable en uno mediante la instrucción i++; para preparar el siguiente dígito (pasando del 0 al 1, luego al 2, etc.).
+* Se incrementa el valor de la variable en uno mediante la instrucción i++ para preparar el siguiente dígito (pasando del 0 al 1, luego al 2, etc.).
 
 * Se evalúa una condición de límite utilizando if(i > 15). Como nuestro objetivo es hacer un contador hexadecimal de un solo dígito (del 0 al F), no necesitamos leer posiciones del arreglo más allá de la 15.
 
@@ -70,8 +70,6 @@ Para poder realizar el ejercicio 2 se utilizó una lógica similar:
 
 
 </div>
-
-
 
 ## Simulación e Implementación
 
