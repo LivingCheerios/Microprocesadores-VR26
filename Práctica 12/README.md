@@ -54,21 +54,8 @@ Para poder realizar la actividad 2 se utilizó la siguiente lógica:
 
 ## Simulación e Implementación
 
-### Actividad 1
-
 ![Simulación en Proteus](./assets/Simulacion_practica12.jpeg)
 
 ![Implementación física en Protoboard](./assets/IMG_6789.JPEG)
 
-### Actividad 2
 
-![Simulación en Proteus](./assets/Simulacion_practica12.jpeg)
-
-![Implementación física en Protoboard](./assets/IMG_6789.JPEG)
-
-## Archivos
-
-Para esta práctica se cuentan con los siguientes archivos:
-* [Archivo del código en C](./Archivos%20C)
-* [Archivo .hex generado por MPLAB](./Archivos%20.hex)
-* [Archivo de la simulación de Proteus](./assets/Practica12.pdsprj)
