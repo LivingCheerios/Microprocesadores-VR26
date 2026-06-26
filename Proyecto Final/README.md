@@ -77,7 +77,7 @@ Para poder realizar este videojuego, el código se estructuró en un Bucle de Ju
 
 ## Simulación e Implementación
 
-![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-26%20142442.png) 
+![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-26%20121406.png) 
 
 ![Implementación física en Protoboard](./assets/Proto%20Practica1.jpeg)
 
