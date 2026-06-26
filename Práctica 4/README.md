@@ -70,7 +70,15 @@ Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
 
 ## Simulación e Implementación
 
-![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-07%20202907.png) 
+### Ejercicio 1
+
+![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-25%20202907.png) 
+
+![Implementación física en Protoboard](./assets/Proto%20Practica3.jpeg)
+
+### Ejercicio 2
+
+![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-25%20202907.png) 
 
 ![Implementación física en Protoboard](./assets/Proto%20Practica3.jpeg)
 
