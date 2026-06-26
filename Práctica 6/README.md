@@ -22,9 +22,9 @@ Estas librerías ahorran el trabajo de hacer toda la comunicación binaria a man
 
 * La estructura LCD (lcd.h): Se define un tipo de dato personalizado que guarda a qué puerto físico te vas a conectar (ej. PORTC) y qué número de pin exacto usarás para las señales de control RS, EN y los datos D4 al D7.
 
-* Macros de Comandos (lcd.h): Contiene atajos definidos con #define (como LCD_Clear() o LCD_Set_Cursor()) para que no tengas que memorizar los códigos hexadecimales nativos de la pantalla.
+* Macros de Comandos (lcd.h): Contiene atajos definidos con #define (como `LCD_Clear()` o `LCD_Set_Cursor()`) para que no tengas que memorizar los códigos hexadecimales nativos de la pantalla.
 
-* Inicialización (lcd.c): La función LCD_Init() hace el trabajo pesado. Detecta qué puerto le pasaste (ej. PORTC) y automáticamente configura ese registro TRIS como salida (0x00). Luego, manda la secuencia de pulsos eléctricos exacta que requiere el chip del LCD para encender en modo de 4 bits, con líneas múltiples y encender la pantalla.
+* Inicialización (lcd.c): La función `LCD_Init()` hace el trabajo pesado. Detecta qué puerto le pasaste (ej. PORTC) y automáticamente configura ese registro TRIS como salida (0x00). Luego, manda la secuencia de pulsos eléctricos exacta que requiere el chip del LCD para encender en modo de 4 bits, con líneas múltiples y encender la pantalla.
 
 * Envío de Datos (lcd.c): Funciones como LCD_Out() y LCD_Write() se encargan de enmascarar los datos y mover los bits (bit-shifting) para mandar la información en dos bloques de 4 bits, haciendo el pulso necesario en el pin Enable (EN).
 
@@ -37,7 +37,7 @@ Configuración inicial: Se desactivan las entradas analógicas igualando `ANSEL`
 
 * Instanciación del LCD: Se declara el objeto de la pantalla con LCD lcd = {&PORTC,2,3,4,5,6,7};. Esto le dice a la librería: "Conéctate al Puerto C. Usa el pin RC2 para RS, el RC3 para EN, y del RC4 al RC7 para los datos D4-D7". Acto seguido, se inicializa con LCD_Init(lcd);.
 
-* Configuración de la Interrupción: Se prepara el pin RB0 como entrada y se configuran los registros de interrupción externa (INTEDG, INTF, INTE, GIE). Aunque en este código en particular la interrupción (la función ISR arriba) solo hace una pausa de 30 ms y limpia la bandera, está lista por si quisieras agregarle interacción con un botón en el futuro.
+* Configuración de la Interrupción: Se prepara el pin RB0 como entrada y se configuran los registros de interrupción externa (INTEDG, INTF, INTE, GIE). Aunque en este código en particular la interrupción (la función ISR arriba) solo hace una pausa de 30 ms y limpia la bandera, se deja lista para el siguiente ejercicio que utilizará un push button.
 
 * El Mensaje Estático: Se utiliza la instrucción LCD_Set_Cursor(0,2); para ubicar el texto en la fila 0 (la línea de arriba), empezando en la columna 2. Luego se imprime el texto estático con LCD_putrs("HELLO WORLD!");.
 
