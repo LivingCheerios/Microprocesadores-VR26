@@ -57,13 +57,13 @@ Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
 
 ### Ejercicio 1
 
-![Simulación en Proteus](./assets/Practica11_1.png)
+![Simulación en Proteus](./assets/11_1.png)
 
 ![Implementación física en Protoboard](./assets/Proto_Practica11_1.jpeg)
 
 ### Ejercicio 2
 
-![Simulación en Proteus](./assets/Practica11_2.png)
+![Simulación en Proteus](./assets/11_2.png)
 
 ![Implementación física en Protoboard](./assets/Proto_Practica11_2.jpeg)
 
@@ -72,4 +72,4 @@ Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
 Para esta práctica se cuentan con los siguentes archivos para todos los ejercicios:
 * [Archivo del código en C](./Archivos%20C)
 * [Archivo .hex generado por MPLAB](./Archivos%20.hex)
-* [Archivo de la simulación de Proteus](./Practica11.pdsprj)
+* [Archivo de la simulación de Proteus](./assets/Practica11.pdsprj)
