@@ -1,0 +1,319 @@
+#include <xc.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "lcd.h"
+
+#pragma config FOSC = HS
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config BOREN = ON
+#pragma config LVP = OFF
+#pragma config CPD = OFF
+#pragma config WRT = OFF
+#pragma config CP = OFF
+
+#define _XTAL_FREQ 8000000
+
+//================================================
+// TECLADO
+//================================================
+
+char teclado[4][4] =
+{
+    {'1','2','3','A'},
+    {'4','5','6','B'},
+    {'7','8','9','C'},
+    {'*','0','#','D'}
+};
+
+char LeerTecla(void)
+{
+    unsigned char fila;
+
+    for(fila = 0; fila < 4; fila++)
+    {
+        PORTD |= 0x0F;
+
+        switch(fila)
+        {
+            case 0: PORTDbits.RD0 = 0; break;
+            case 1: PORTDbits.RD1 = 0; break;
+            case 2: PORTDbits.RD2 = 0; break;
+            case 3: PORTDbits.RD3 = 0; break;
+        }
+
+        __delay_us(50);
+
+        if(!PORTBbits.RB0) { while(!PORTBbits.RB0); __delay_ms(30); return teclado[fila][0]; }
+        if(!PORTBbits.RB1) { while(!PORTBbits.RB1); __delay_ms(30); return teclado[fila][1]; }
+        if(!PORTBbits.RB2) { while(!PORTBbits.RB2); __delay_ms(30); return teclado[fila][2]; }
+        if(!PORTBbits.RB3) { while(!PORTBbits.RB3); __delay_ms(30); return teclado[fila][3]; }
+    }
+
+    return 0;
+}
+
+//================================================
+// CONVERTIR STRING A NUMERO ESCALADO x100
+// Ej: "12.35" -> 1235
+//     "7"     -> 700
+//================================================
+
+long convertirNumero(char *cad)
+{
+    long entero  = 0;
+    long decimal = 0;
+    char i = 0;
+
+    while(cad[i] != '\0' && cad[i] != '.')
+    {
+        entero = entero * 10 + (cad[i] - '0');
+        i++;
+    }
+
+    if(cad[i] == '.')
+        i++;
+
+    char cont = 0;
+    while(cad[i] != '\0' && cont < 2)
+    {
+        decimal = decimal * 10 + (cad[i] - '0');
+        i++;
+        cont++;
+    }
+
+    if(cont == 1) decimal *= 10;   // Ej: ".5" -> 50
+
+    return entero * 100L + decimal;
+}
+
+//================================================
+// MOSTRAR RESULTADO EN LCD
+//================================================
+
+void mostrarResultado(long valor)
+{
+    char buffer[17];
+    long entero;
+    long decimal;
+
+    if(valor < 0)
+    {
+        valor   = -valor;
+        entero  = valor / 100L;
+        decimal = valor % 100L;
+        sprintf(buffer, "-%ld.%02ld", entero, decimal);
+    }
+    else
+    {
+        entero  = valor / 100L;
+        decimal = valor % 100L;
+        sprintf(buffer, "%ld.%02ld", entero, decimal);
+    }
+
+    LCD_Clear();
+    LCD_Set_Cursor(0, 0);
+    LCD_putrs("Resultado:");
+    LCD_Set_Cursor(1, 0);
+    LCD_putrs(buffer);
+}
+
+//================================================
+// LIMPIAR ESTADO
+//================================================
+
+void limpiarEstado(char *s1, char *s2, char *op, unsigned char *est)
+{
+    s1[0] = '\0';
+    s2[0] = '\0';
+    *op   = 0;
+    *est  = 0;
+}
+
+//================================================
+// MAIN
+//================================================
+
+void main(void)
+{
+    ANSEL  = 0x00;
+    ANSELH = 0x00;
+
+    TRISD  = 0xF0;   // RD0-RD3 salidas (filas teclado)
+    TRISB  = 0x0F;   // RB0-RB3 entradas (columnas teclado)
+
+    OPTION_REGbits.nRBPU = 0;   // Pull-ups internos PORTB activos
+
+    PORTD  = 0x0F;
+    PORTB  = 0x0F;
+
+    LCD display = {&PORTC, 2, 3, 4, 5, 6, 7};
+    LCD_Init(display);
+
+    char num1_str[16];
+    char num2_str[16];
+    long num1      = 0;
+    long num2      = 0;
+    long resultado = 0;
+    char operador  = 0;
+    char tecla;
+    unsigned char estado       = 0;  // 0 = ingresando num1, 1 = ingresando num2
+    unsigned char mostrandoRes = 0;  // flag: se acaba de mostrar un resultado
+
+    num1_str[0] = '\0';
+    num2_str[0] = '\0';
+
+    // Pantalla de bienvenida
+    LCD_Clear();
+    LCD_Set_Cursor(0, 0);
+    LCD_putrs("  Calculadora   ");
+    LCD_Set_Cursor(1, 0);
+    LCD_putrs("A+ B- C* D/     ");
+    __delay_ms(2000);
+    LCD_Clear();
+
+    while(1)
+    {
+        tecla = LeerTecla();
+
+        if(tecla == 0)
+            continue;
+
+        // Si se estaba mostrando un resultado, cualquier tecla nueva
+        // limpia y empieza una operacion nueva
+        if(mostrandoRes)
+        {
+            limpiarEstado(num1_str, num2_str, &operador, &estado);
+            mostrandoRes = 0;
+            LCD_Clear();
+        }
+
+        //----------------------------------------
+        // '*' = IGUAL si hay numeros, o CLEAR si no hay nada
+        //----------------------------------------
+        if(tecla == '*')
+        {
+            // Si no hay nada ingresado, limpiar pantalla
+            if(num1_str[0] == '\0')
+            {
+                LCD_Clear();
+                continue;
+            }
+
+            // Si hay dos numeros y operador, calcular
+            if(num2_str[0] != '\0' && operador != 0)
+            {
+                num1 = convertirNumero(num1_str);
+                num2 = convertirNumero(num2_str);
+
+                switch(operador)
+                {
+                    case 'A':   // Suma
+                        resultado = num1 + num2;
+                        break;
+
+                    case 'B':   // Resta
+                        resultado = num1 - num2;
+                        break;
+
+                    case 'C':   // Multiplicacion
+                        // Ambos estan en escala x100, el producto queda x10000
+                        // dividimos entre 100 para volver a escala x100
+                        resultado = (num1 * num2) / 100L;
+                        break;
+
+                    case 'D':   // Division
+                        if(num2 != 0)
+                            // num1/num2 en escala x100: multiplicamos num1 x100
+                            // antes de dividir para conservar los decimales
+                            resultado = (num1 * 100L) / num2;
+                        else
+                        {
+                            // Division entre cero
+                            LCD_Clear();
+                            LCD_Set_Cursor(0, 0);
+                            LCD_putrs("  Error:        ");
+                            LCD_Set_Cursor(1, 0);
+                            LCD_putrs("  Div entre 0   ");
+                            __delay_ms(2000);
+                            limpiarEstado(num1_str, num2_str, &operador, &estado);
+                            LCD_Clear();
+                            continue;
+                        }
+                        break;
+                }
+
+                mostrarResultado(resultado);
+                mostrandoRes = 1;
+                continue;   // Saltar el refresco de pantalla normal
+            }
+
+            // Si solo hay num1 sin operador, ignorar
+            continue;
+        }
+
+        //----------------------------------------
+        // NUMEROS Y PUNTO DECIMAL ('#' = '.')
+        //----------------------------------------
+        if((tecla >= '0' && tecla <= '9') || tecla == '#')
+        {
+            char caracter = (tecla == '#') ? '.' : tecla;
+            char *str     = (estado == 0) ? num1_str : num2_str;
+            char len      = 0;
+
+            while(str[len] != '\0') len++;
+
+            // No permitir dos puntos en el mismo numero
+            if(caracter == '.')
+            {
+                unsigned char yaTienePunto = 0;
+                for(char j = 0; j < len; j++)
+                    if(str[j] == '.') { yaTienePunto = 1; break; }
+                if(yaTienePunto) continue;
+            }
+
+            // Maximo 9 caracteres por numero (ej: "99999.99")
+            if(len < 9)
+            {
+                str[len]   = caracter;
+                str[len+1] = '\0';
+            }
+        }
+
+        //----------------------------------------
+        // OPERADORES: A=+ B=- C=* D=/
+        //----------------------------------------
+        else if(tecla == 'A' || tecla == 'B' || tecla == 'C' || tecla == 'D')
+        {
+            // Solo asignar operador si ya hay un primer numero
+            if(num1_str[0] != '\0')
+            {
+                operador = tecla;
+                estado   = 1;
+            }
+        }
+
+        //----------------------------------------
+        // REFRESCO DE PANTALLA (operacion en curso)
+        // Fila 0: num1 + operador + num2
+        // Fila 1: indicador de operador activo
+        //----------------------------------------
+
+        LCD_Clear();
+        LCD_Set_Cursor(0, 0);
+        LCD_putrs(num1_str);
+
+        switch(operador)
+        {
+            case 'A': LCD_putc('+'); break;
+            case 'B': LCD_putc('-'); break;
+            case 'C': LCD_putc('x'); break;
+            case 'D': LCD_putc('/'); break;
+        }
+
+        LCD_putrs(num2_str);
+
+        __delay_ms(50);
+    }
+}
