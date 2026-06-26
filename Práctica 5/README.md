@@ -55,11 +55,11 @@ Para poder realizar el ejercicio 1 se utilizó la siguiente lógica:
 
   * millares = num / 1000; (Ej: 4567 / 1000 = 4).
 
-** centenas = (num % 1000) / 100; (Ej: El residuo de dividir entre 1000 es 567. Luego 567 / 100 = 5).
+  * centenas = (num % 1000) / 100; (Ej: El residuo de dividir entre 1000 es 567. Luego 567 / 100 = 5).
 
-** decenas = (num % 100) / 10; (Ej: El residuo entre 100 es 67. Luego 67 / 10 = 6).
+  * decenas = (num % 100) / 10; (Ej: El residuo entre 100 es 67. Luego 67 / 10 = 6).
 
-** unidades = num % 10; (Ej: El residuo de dividir entre 10 directamente es 7).
+  * unidades = num % 10; (Ej: El residuo de dividir entre 10 directamente es 7).
 
 * El Bucle de Multiplexación: Se utiliza un ciclo for que se repite 10 veces. Este ciclo tiene dos objetivos: dibujar los números rapidísimo para engañar al ojo humano (Persistencia de la Visión), y actuar como un retardo general para que la cuenta no avance tan rápido que sea imposible de leer.
 
