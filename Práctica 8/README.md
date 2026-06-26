@@ -56,7 +56,7 @@ Para esta actividad se añadió la siguiente lógica:
 
 ![Simulación en Proteus](./assets/Simulacion8.jpeg)
 
-![Implementación física en Protoboard](./assets/Implementacion8.jpeg)
+![Implementación física en Protoboard](./assets/Practica8.jpeg)
 
 ## Archivos
 Para esta práctica se cuentan con los siguientes archivos para todos los ejercicios:
