@@ -53,7 +53,7 @@ Para poder realizar el ejercicio 1 se utilizó la siguiente lógica:
 
 * Descomposición del Número: Dentro del bucle, se toma el valor completo de num (por ejemplo, el 4567) y se despedaza en cuatro variables separadas usando matemáticas:
 
-** millares = num / 1000; (Ej: 4567 / 1000 = 4).
+  * millares = num / 1000; (Ej: 4567 / 1000 = 4).
 
 ** centenas = (num % 1000) / 100; (Ej: El residuo de dividir entre 1000 es 567. Luego 567 / 100 = 5).
 
