@@ -26,7 +26,7 @@ Como Proyecto Final, se creo un mini-videojuego de 2 jugadores. El jugador inten
 
 <div align="justify">
 
-El protocolo utilizado en el proyecto final es EUSART. La explicación de este protocolo a detalle se encuentra en el archivo pdf ubicado en la sección de Archivos. 
+El protocolo utilizado en el proyecto final es EUSART. La explicación de este protocolo a detalle se encuentra en el archivo pdf ubicado en la sección de Archivos. El PIC2 es el jugador de la derecha, y el PIC1 es el jugador de la izquierda.
 
 </div>
 
