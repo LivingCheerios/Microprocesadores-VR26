@@ -56,9 +56,30 @@ Para poder realizar este ejercicio se dividió el código en la inicialización 
 ### Ejercicio 2: Cambio de vista a voltaje/ADC/porcentaje
 
 <div align="justify">
+  
+Para poder realizar este ejercicio se implementó una máquina de estados controlada por un botón físico, utilizando la siguiente lógica:
 
+* Variables de Estado: Antes del bucle principal, se declaran dos variables clave. modo inicia en 0 y servirá para recordar en qué "pantalla" estamos. `boton_anterior` inicia en 1 y funcionará como una memoria para saber si el botón ya estaba presionado en el ciclo anterior.
 
+* Detección de Flanco: En lugar de preguntar simplemente "está el botón presionado", la condición `if(!PORTBbits.RB0 && boton_anterior)` pregunta: "¿El botón está presionado AHORA y estaba suelto ANTES?". Esto garantiza que la acción se ejecute exactamente en el instante en que el dedo baja el botón, evitando registrar múltiples pulsaciones accidentales.
 
+* Anti-rebote y Bloqueo: Al detectar el toque, se hace una pausa de 20 ms (__delay_ms(20);) para ignorar el ruido metálico inicial del botón.
+
+  * Se incrementa la variable modo (sumando 1). Si supera el valor de 2, se reinicia a 0, creando un ciclo continuo (0 -> 1 -> 2 -> 0...).
+
+  * El bucle vacío `while(!PORTBbits.RB0);` atrapa al programa hasta que el usuario levante el dedo, seguido de otra pausa de 20 ms para estabilizar la señal.
+
+Actualización del Estado Anterior: Antes de continuar, se actualiza la "memoria" del botón (boton_anterior = PORTBbits.RB0;) para estar listos para el próximo ciclo.
+
+* Máquina de Estados (Estructura Switch): Tras leer el valor del ADC, se evalúa la variable modo mediante un bloque switch(modo). Dependiendo de su valor, el programa entra a un "estuche" (case) diferente para realizar las matemáticas correspondientes:
+
+  * Case 0 (Modo Voltaje): Ejecuta la misma lógica del ejercicio anterior. Convierte el valor bruto a milivoltios multiplicando por 5000 y dividiendo entre 1023. Separa enteros de decimales para imprimir un formato amigable como "2.500 V".
+
+  * Case 1 (Modo ADC): Es la vista "cruda" para el desarrollador. Toma la variable adc_value directamente y la imprime en pantalla. Mostrará un número entero entre 0 y 1023.
+
+  * Case 2 (Modo Porcentaje): Escala el valor a un formato del 0% al 100%. Se logra multiplicando el valor crudo por 100 y dividiendo entre el máximo teórico (1023). Se imprime con el símbolo %% (en la función sprintf, poner doble porcentaje sirve para imprimir el símbolo % literal en la pantalla).
+
+* Tasa de Refresco: Al final del bucle, se incluye un retardo general de __delay_ms(80);. Esto permite que la pantalla LCD se actualice a una velocidad agradable para el ojo humano, evitando que los números parpadeen bruscamente si el potenciómetro se mueve rápido.
 
 </div>
 
