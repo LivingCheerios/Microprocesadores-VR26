@@ -79,7 +79,7 @@ Para poder realizar este videojuego, el código se estructuró en un Bucle de Ju
 
 ![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-26%20121406.png) 
 
-![Implementación física en Protoboard](./assets/Proto%20Practica1.jpeg)
+![Implementación física en Protoboard](./assets/Proy_final.gif)
 
 ## Archivos
 * [Explicación del protocolo EUSART](./Proyecto%20Final%20Micro%20(EUSART).pdf)
