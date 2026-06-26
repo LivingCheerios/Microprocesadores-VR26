@@ -62,11 +62,10 @@ Para poder realizar este ejercicio se dividió el código en la inicialización 
 
 </div>
 
-## Simulación e Implementación
+## Implementación
 
-![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-07%20202907.png) 
 
-![Implementación física en Protoboard](./assets/Proto%20Practica3.jpeg)
+![Implementación física en Protoboard](./assets/Practica7.jpeg)
 
 ## Archivos
 Para esta práctica se cuentan con los siguentes archivos para todos los ejercicios:
