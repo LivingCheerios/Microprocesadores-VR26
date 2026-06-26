@@ -128,8 +128,6 @@ Para poder realizar el tercer ejercicio se utilizó la siguiente lógica:
 
 ### Ejercicio 1
 
-Captura de pantalla 2026-06-25 195250.png
-
 
 ![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-25%20195250.png) 
 
