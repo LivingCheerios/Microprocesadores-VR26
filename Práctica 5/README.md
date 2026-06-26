@@ -84,7 +84,43 @@ Proceso de Barrido (dentro del for):
 
 <div align="justify">
 
+Para poder realizar el tercer ejercicio se utilizó la siguiente lógica:
 
+* Variables Globales: Se declaran num (que guardará la cuenta actual del 0 al 9999) y direccion (que funciona como una bandera: 1 significa cuenta ascendente y 0 cuenta descendente) fuera del main para que tanto el programa principal como la interrupción puedan acceder a ellas.
+
+* Modularidad con la función mostrar(): Para mantener el código limpio, se agrupó toda la lógica del display multiplexado en esta función.
+
+  * Primero, separa el valor de num en millares, centenas, decenas y unidades usando operaciones de división y módulo (/ y %).
+
+  * Luego, realiza el barrido encendiendo un dígito a la vez (modificando PORTC) y mandando el patrón correspondiente (a PORTD).
+
+  * Se utilizan retardos de microsegundos (__delay_us(500)). Esto hace que el barrido sea mucho más rápido (imperceptible al ojo humano) dando la ilusión de que los cuatro números están encendidos fijos al mismo tiempo.
+
+* Configuración Inicial: En el main, se configuran los puertos como digitales, se activan las resistencias Pull-up (en el Puerto B) y se definen entradas y salidas.
+
+* Configuración de la Interrupción: Al igual que en la práctica anterior, se prepara el microcontrolador para reaccionar a una señal externa en el pin RB0 (INTF = 0, INTEDG = 0 para flanco de bajada, INTE = 1, y GIE = 1).
+
+* Dentro del bucle principal (while(1)):
+
+* Retardo visual activo: Se utiliza un ciclo for que repite la función mostrar() 10 veces. A diferencia de un __delay_ms() normal que "congela" al microcontrolador y apagaría el display, este ciclo mantiene la multiplexación viva mientras hace tiempo para que la cuenta no avance demasiado rápido.
+
+* Lógica Bidireccional: Después de mostrar los números un rato, se evalúa la bandera direccion.
+
+  * Si direccion vale 1, el contador incrementa (num++). Si llega a 10000, se reinicia a 0.
+
+  * Si direccion vale 0, el contador decrementa (num--). Si está en 0, da la vuelta regresando a 9999.
+
+* Rutina de Interrupción (ISR): Cuando el usuario presiona el botón, el programa pausa el conteo y salta a la ISR.
+
+  * Se verifica que la interrupción provenga del botón comprobando la bandera INTF.
+
+  * Inmediatamente se limpia la bandera (INTF = 0;) para indicarle al sistema que la alarma ya está siendo atendida.
+
+  * Se incluye un __delay_ms(50); directamente dentro de la interrupción como filtro anti-rebote (debounce) para evitar que el ruido mecánico del botón provoque múltiples cambios accidentales.
+
+  * Finalmente, se invierte el estado de la bandera usando una negación lógica (direccion = !direccion;). Si era 1 pasa a 0, y si era 0 pasa a 1.
+
+  * Al salir de la interrupción, el bucle principal retoma su trabajo, pero ahora contando en el sentido contrario.
 
 </div>
 
