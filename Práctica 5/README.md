@@ -128,7 +128,8 @@ Para poder realizar el tercer ejercicio se utilizó la siguiente lógica:
 
 ### Ejercicio 1
 
-![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-25%20202907.png) 
+
+![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-25%195250.png) 
 
 ![Implementación física en Protoboard](./assets/Proto%20Practica4_1.jpeg)
 
