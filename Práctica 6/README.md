@@ -66,6 +66,10 @@ Configuración inicial: Se desactivan las entradas analógicas igualando `ANSEL`
 
 ## Simulación e Implementación
 
+142731
+
+![Simulacion](./assets/Captura%20de%20pantalla%202026-06-26%20142731.png)
+
 ![Implementación física en Protoboard](./assets/Practica6.jpeg)
 
 ![Implementación física en Protoboard](./assets/Practica6_2.jpeg)
