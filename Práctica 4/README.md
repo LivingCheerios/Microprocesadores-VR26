@@ -18,7 +18,7 @@ Esta práctica consistió en 2 ejercicios:
 
 <div align="justify">
 
-Para poder realizar el ejercicio 6 se utilizó la siguiente lógica:
+Para poder realizar el ejercicio 1 se utilizó la siguiente lógica:
 
 * Configuración de pines a modo Digital: Se utilizan las instrucciones ANSEL = 0x00; y ANSELH = 0x00;. Por defecto, muchos pines del microcontrolador inician configurados para leer señales analógicas (como sensores de temperatura). Al igualarlas a cero, le decimos al microcontrolador que trate a todos los pines estrictamente como entradas y salidas digitales (es decir, que solo entiendan el lenguaje de ceros y unos).
 
