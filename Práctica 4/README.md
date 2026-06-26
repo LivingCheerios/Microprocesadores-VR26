@@ -37,7 +37,33 @@ Para poder realizar el ejercicio 1 se utilizó la siguiente lógica:
 ### Ejercicio 2: Contador del 0-99 con botones de suma, resta y reset
 
 <div align="justify">
+Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
 
+* Se define un arreglo display[10] que contiene los códigos hexadecimales necesarios para formar los números del 0 al 9 en los displays de 7 segmentos. Asimismo, se inicializa la variable global contador = 0; que almacenará el valor actual de nuestra cuenta (del 0 al 99).
+
+* Se configuran los pines del microcontrolador en modo estrictamente digital igualando ANSEL y ANSELH a 0, como se hizo en el ejercicio pasado.
+
+* Se activan las resistencias Pull-up internas del microcontrolador aplicando una máscara al registro de opciones (OPTION_REG &= 0b01111111;). 
+
+* Se configuran los puertos: El Puerto B se declara como entrada (TRISB = 0xFF;) para conectar los botones. Los Puertos C y D se declaran como salidas (TRISC = 0x00; y TRISD = 0x00;) para conectar el display de las unidades y el de las decenas, respectivamente.
+
+* Se entra en el bucle infinito while(1).
+
+* Separación de dígitos: Dentro del bucle, se divide el número del contador usando operaciones matemáticas básicas para enviarlo a los displays.
+
+* PORTC = display[contador % 10];: La operación módulo (%) obtiene el residuo de la división entre 10, lo que nos da el dígito de las unidades.
+
+* PORTD = display[contador / 10];: La división entera (/) entre 10 nos da el dígito de las decenas.
+
+* Filtro Anti-rebote (Debounce): Para leer cada botón (ej. if(!RB0)), se utiliza una técnica de confirmación. Al detectar un 0 (botón presionado), el microcontrolador espera 50 milisegundos (__delay_ms(50);) y vuelve a preguntar si el botón sigue presionado (if(!RB0)). Esto elimina las lecturas falsas causadas por la vibración mecánica de los contactos del botón físico.
+
+* Lógica del Botón Incrementar (RB0): Si se confirma su pulsación, se evalúa si la variable contador ya llegó al límite de 99. De ser así, se reinicia a 0. En caso contrario, se le suma uno (contador++).
+
+* Lógica del Botón Decrementar (RB1): Si se confirma su pulsación, se evalúa el límite inferior. Si la variable está en 0, pasa directamente al límite superior (99). En caso contrario, se le resta uno (contador--).
+
+* Lógica del Botón Reset (RB2): Si se confirma su pulsación, simplemente se iguala la variable a cero (contador = 0;), reiniciando la cuenta sin importar en qué número iba.
+
+* Bloqueo de repetición: Al final de la lógica de cada botón, se incluye un bucle vacío condicionado (ej. while(!RB0);). Esto obliga al microcontrolador a quedarse "atrapado" sin hacer nada mientras el usuario mantenga el dedo en el botón, asegurando que la cuenta avance (o retroceda) exactamente un solo número por cada pulsación individual, en lugar de avanzar cientos de números por segundo.
 
 
 </div>
