@@ -74,13 +74,13 @@ Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
 
 ![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-25%20202907.png) 
 
-![Implementación física en Protoboard](./assets/Proto%20Practica3.jpeg)
+![Implementación física en Protoboard](./assets/Proto%20Practica4_1.jpeg)
 
 ### Ejercicio 2
 
 ![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-25%20202907.png) 
 
-![Implementación física en Protoboard](./assets/Proto%20Practica3.jpeg)
+![Implementación física en Protoboard](./assets/Proto%20Practica4_2.jpeg)
 
 ## Archivos
 Para esta práctica se cuentan con los siguentes archivos para todos los ejercicios:
