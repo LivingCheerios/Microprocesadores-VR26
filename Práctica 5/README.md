@@ -43,6 +43,39 @@ Para poder realizar el ejercicio 1 se utilizó la siguiente lógica:
 
 <div align="justify">
 
+* Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
+
+* Configuración Inicial: Se configuran los puertos C y D como salidas (TRISC = 0; TRISD = 0;). El Puerto D se encargará de mandar el "dibujo" del número (los segmentos), y el Puerto C se encargará de seleccionar qué dígito físico se va a encender.
+
+* Variable del Contador: Se declara la variable int num = 0;. Al ser un tipo de dato int (entero de 16 bits), ahora tiene la capacidad matemática de almacenar números mucho más grandes, perfectos para llegar hasta el 9999.
+
+* Se entra en el bucle principal while(1).
+
+* Descomposición del Número: Dentro del bucle, se toma el valor completo de num (por ejemplo, el 4567) y se despedaza en cuatro variables separadas usando matemáticas:
+
+** millares = num / 1000; (Ej: 4567 / 1000 = 4).
+
+** centenas = (num % 1000) / 100; (Ej: El residuo de dividir entre 1000 es 567. Luego 567 / 100 = 5).
+
+** decenas = (num % 100) / 10; (Ej: El residuo entre 100 es 67. Luego 67 / 10 = 6).
+
+** unidades = num % 10; (Ej: El residuo de dividir entre 10 directamente es 7).
+
+* El Bucle de Multiplexación: Se utiliza un ciclo for que se repite 10 veces. Este ciclo tiene dos objetivos: dibujar los números rapidísimo para engañar al ojo humano (Persistencia de la Visión), y actuar como un retardo general para que la cuenta no avance tan rápido que sea imposible de leer.
+
+Proceso de Barrido (dentro del for):
+
+* Se activa solo el primer display mandando un 0 lógico en el bit correspondiente del Puerto C (PORTC = 0b11110111;). Inmediatamente, se manda el dibujo al Puerto D (PORTD = patron[millares];) y se espera 1 milisegundo.
+
+* Se apaga el primero y se enciende solo el segundo display (PORTC = 0b11111011;), se manda el dibujo de las centenas, y se espera 1 ms.
+
+* Se repite el proceso para el tercer display (0b11111101;) con las decenas, y para el cuarto display (0b11111110;) con las unidades, cada uno encendido solo por 1 ms.
+
+* Nota técnica: Toda esta secuencia de 4 encendidos tarda apenas 4 milisegundos en completarse. El ojo humano es demasiado lento para notar este parpadeo, por lo que el cerebro fusiona las imágenes y parece que los 4 dígitos están encendidos al mismo tiempo.
+
+* Incremento de la Cuenta: Una vez que el ciclo for termina de mostrar el número actual por unas fracciones de segundo, se incrementa el contador general sumándole uno (num++;).
+
+* Límite y Reseteo: Se evalúa la condición if(num == 10000). Como el display físico solo tiene 4 dígitos (y el máximo es 9999), si la cuenta intenta llegar al diez mil, la condición fuerza a la variable de regreso a cero (num = 0;), repitiendo la secuencia desde el principio infinitamente.
 
 
 </div>
