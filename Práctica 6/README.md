@@ -66,9 +66,10 @@ Configuración inicial: Se desactivan las entradas analógicas igualando `ANSEL`
 
 ## Simulación e Implementación
 
-![Simulación en Proteus](./assets/Captura%20de%20pantalla%202026-06-07%20202907.png) 
+![Implementación física en Protoboard](./assets/Practica6.jpeg)
 
-![Implementación física en Protoboard](./assets/Practica3.jpeg)
+![Implementación física en Protoboard](./assets/Practica6_2.jpeg)
+
 
 ## Archivos
 Para esta práctica se cuentan con los siguentes archivos para todos los ejercicios:
