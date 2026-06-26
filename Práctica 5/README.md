@@ -1,6 +1,6 @@
-# Práctica 4
+# Práctica 5
 
-Esta práctica consistió en 2 ejercicios:
+Esta práctica consistió en 3 ejercicios:
 * Realizar un contador de 0 - 9 con displays de 7 segmentos que al momento de presionar un boton se detenga el contador y haga parpadear un LED momentaneamente utilizando interrupcion externa
 * Realizar un contador de 0 - 9999 con el display de 4 digitos de 7 segmentos
 * Realizar un contador de 0 - 9999 que utilice interrupciones para sumar digitos.
