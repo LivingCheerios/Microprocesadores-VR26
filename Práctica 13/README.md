@@ -61,8 +61,6 @@ Para poder realizar el ejercicio 2 se utilizó la siguiente lógica:
 
 ![Simulación en Proteus](./assets/13_1.png)
 
-![Implementación física en Protoboard](./assets/Proto_Practica13_1.jpeg)
-
 ### Ejercicio 2
 
 ![Simulación en Proteus](./assets/13_2.png)
